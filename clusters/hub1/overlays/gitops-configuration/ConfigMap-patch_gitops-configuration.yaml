@@ -1,0 +1,14 @@
+- op: replace
+  path: /data/gitopsCluster
+  value: hub1
+
+# NOTE:
+#   It is recognized that is not best git practice to commit commented out code, but
+#   these are here for ease of permanently or temporarily overriding the gitops configuration for this cluster
+
+#- op: replace
+#  path: /data/gitopsRepository
+#  value: 
+#- op: replace
+#  path: /data/gitopsRevision
+#  value: 

@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: open-cluster-management
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: acm-operator
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/part-of: cluster-management
+
+helmCharts:
+- name: operators-installer
+  repo: https://redhat-cop.github.io/helm-charts
+  version: 3.0.1
+  valuesFile: values.yaml

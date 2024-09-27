@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: acm-policies
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: acm-policies
+    app.kubernetes.io/component: governance
+    app.kubernetes.io/part-of: cluster-management
+
+resources:
+- ManagedClusterSetBinding_default.yaml
+
+generators:
+- PolicyGenerator_gitops.yaml
+#- PolicyGenerator_tenant-gitops.yaml

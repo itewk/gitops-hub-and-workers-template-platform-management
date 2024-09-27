@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: cluster-hub1-applications
+    app.kubernetes.io/component: applications
+    app.kubernetes.io/part-of: gitops
+
+namespace: openshift-gitops
+
+resources:
+# load gitops configuration (e.g. repository, revision)
+- overlays/gitops-configuration
+
+# install applications
+- ApplicationSet_cluster-hub1.yaml
+- ../../groups/all
+- ../../groups/hub
+
+# Update ApplicationSets to use the gitops configuration
+replacements:
+- path: ApplicationSets-replacement_gitopsRepository.yaml
+- path: ApplicationSets-replacement_gitopsRevision.yaml

@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: openshift-gitops
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: openshift-gitops
+    app.kubernetes.io/component: reconciler
+    app.kubernetes.io/part-of: gitops
+
+resources:
+- ArcoCD_openshift-gitops.yaml
+- ClusterRoleBinding_openshift-gitops-acm-cluster-admin.yaml
+- ClusterRoleBinding_openshift-gitops-acm-clusterclaims-admin.yaml
+- ClusterRoleBinding_openshift-gitops-acm-multiclusterhubs-admin.yaml
+- ClusterRoleBinding_openshift-gitops-argo-applicationsets-admin.yaml
+- ClusterRoleBinding_openshift-gitops-projects-admin.yaml
+- ClusterRole_open-cluster-management-clusterclaims-admin.yaml
+- ClusterRole_gatekeeper-admin.yaml
+- ClusterRoleBinding_gatekeeper-admin.yaml
+- ClusterRole_projects-admin.yaml

@@ -1,0 +1,71 @@
+---
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredmanifestsubset
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredManifestSubset
+      validation:
+        openAPIV3Schema:
+          properties:
+            manifest_subset:
+              type: object
+              additionalProperties:
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sobjectrequiredmanifestsubset
+
+        # validate that a given manifest is a subset of the provided object
+        violation[{"details": details, "msg": msg}] {
+            # get provided object and required object manifest subset
+          provided := input.review.object
+          required := input.parameters.manifest_subset
+            
+            # Check that each required key exists in provided and
+            # and the value of each required key is a subset of provided
+            invalid := {
+              {required_key: {"required_value": required_value, "provided_value": provided_val}} |
+              required_value := required[required_key];
+              provided_val := object.get(provided, required_key, {});
+              _provided_contains_required(provided, required, required_key)
+            }
+            invalid_keys := {required_key | invalid[_][required_key]}
+            
+            # violation if any required manifest subset is missing or different then expected
+          count(invalid) > 0
+            
+            # the validation message
+            kind := object.get(input.review.object, "kind", "UnknownType")
+          name := object.get(input.review.object.metadata, "name", "UnknownName")
+            details := {
+              "invalid_manifest_subsets": invalid
+            }
+          msg := sprintf(
+              "%v/%v: Expected manifest subset(s) are missing or not of expected value:\n%v",
+              [kind, name, invalid_keys]
+            )
+        }
+
+        # check that provided contains the required key
+        # NOTE: have to check this separate from the values
+        #       matching check that uses object.subset because
+        #       object.subset returns true if the given parent is empty
+        _provided_contains_required(provided, required, required_key) {
+          required[required_key]
+          not object.keys(provided)[required_key]
+        }
+
+        # check that the value of provided either equals or contains as a subset the value of required
+        _provided_contains_required(provided, required, required_key) {
+          required_value := required[required_key];
+            provided_val := provided[required_key];
+            not required_value == provided_val
+            not object.subset(provided_val, required_value)
+        }

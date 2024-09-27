@@ -1,0 +1,17 @@
+---
+# Set the ApplicationSet gitops repository URL
+#
+# Source is assuming a resource with /data/gitopsRepository (e.g. ConfigMap)
+source:
+  name: gitops-configuration
+  fieldPath: .data.gitopsRepository
+targets:
+  - select:
+      group: argoproj.io
+      version: v1alpha1
+      kind: ApplicationSet
+    fieldPaths:
+      - spec.generators.*.git.repoURL
+      - spec.template.spec.source.repoURL
+    options:
+      create: True

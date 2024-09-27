@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../../../bases/gitops-configuration
+
+# Patch gitops configuration for cluster specific configuration (e.g. repository, revision)
+patches:
+- target:
+    name: gitops-configuration
+  path: ConfigMap-patch_gitops-configuration.yaml

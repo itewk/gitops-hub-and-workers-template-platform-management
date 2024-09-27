@@ -1,0 +1,47 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: group-all
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      #repoURL: # to be set by patches or replacements
+      #revision: # to be set by patches or replacements
+      files:
+      - path: 'groups/all/applications/**/kustomization.yaml'
+  template:
+    metadata:
+      name: '{{ .path.basenameNormalized }}'
+      labels:
+        gitops-application: '{{ .path.basenameNormalized }}'
+    spec:
+      project: default
+      source:
+        # repoURL: # to be set by patches or replacements
+        # targetRevision: # to be set by patches or replacements
+        path: '{{ .path.path }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ dig "namespace" "" . }}' # ensure Argo gets namespace admin on created namespace
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+
+        # since there are inter-dependencies between applications that can take a while to sort themselves out allow for infinite retries
+        retry:
+          limit: -1
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 10m
+
+        # ensure Argo gets namespace admin on created namespace
+        syncOptions:
+        - CreateNamespace=true
+        managedNamespaceMetadata:
+          labels:
+            argocd.argoproj.io/managed-by: openshift-gitops

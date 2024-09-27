@@ -1,0 +1,14 @@
+---
+operatorGroups:
+- name: gatekeeper-operator
+  createNamespace: false # Let Argo Application create it so it can give itself namespace admin
+  targetOwnNamespace: false
+operators:
+- channel: stable
+  installPlanApproval: Manual
+  automaticIntermediateManualUpgrades: true
+  name: gatekeeper-operator-product
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  csv: gatekeeper-operator-product.v3.15.1-0.1725401534.p
+  namespace: gatekeeper-operator

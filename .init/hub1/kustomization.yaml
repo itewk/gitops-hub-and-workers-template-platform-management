@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: openshift-gitops
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/part-of: gitops
+
+resources:
+# configure OpenShift GitOps (after init enforced by management policy)
+- ../../bases/openshift-gitops
+- ../../clusters/hub1/overlays/gitops-configuration
+
+# install initial application (after init enforced by management policy)
+- Application_cluster-operations.yaml
+
+# Update Application to use the gitops configuration (after init enforced by management policy)
+replacements:
+- path: Application-replacement_gitopsRepository.yaml
+- path: Application-replacement_gitopsRevision.yaml
