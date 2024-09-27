@@ -18,6 +18,7 @@ TODO
 Current status of this repository
 
 - [x] Initialization is tested as working against Red Hat OpenShift Container Platform cluster 4.16.12
+- [ ] Update kuztomizations to point at git links rather then relative links to support structural promotions
 - [ ] Document repo description / purpose
 - [ ] Document repo architecture
 - [ ] Implement sample "managed workload cluster"
