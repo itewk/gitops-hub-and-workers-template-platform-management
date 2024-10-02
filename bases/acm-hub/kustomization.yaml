@@ -7,9 +7,9 @@ namespace: open-cluster-management
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: acm-hub
-    app.kubernetes.io/component: hub
-    app.kubernetes.io/part-of: cluster-management
+    app.kubernetes.io/name: rhacm-hub
+    app.kubernetes.io/component: governance
+    app.kubernetes.io/part-of: platform-management
 
 resources:
 - MultiClusterHub.yaml

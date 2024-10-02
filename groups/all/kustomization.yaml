@@ -5,9 +5,9 @@ kind: Kustomization
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: group-all-applications
-    app.kubernetes.io/component: applications
-    app.kubernetes.io/part-of: gitops
+    app.kubernetes.io/name: group-all
+    app.kubernetes.io/component: cluster-management
+    app.kubernetes.io/part-of: platform-management
 
 resources:
 - ApplicationSet_group-all.yaml

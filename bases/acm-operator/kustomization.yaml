@@ -7,9 +7,9 @@ namespace: open-cluster-management
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: acm-operator
-    app.kubernetes.io/component: operator
-    app.kubernetes.io/part-of: cluster-management
+    app.kubernetes.io/name: rhacm-operator
+    app.kubernetes.io/component: governance
+    app.kubernetes.io/part-of: platform-management
 
 helmCharts:
 - name: operators-installer

@@ -8,8 +8,9 @@ labels:
 - includeSelectors: false
   pairs:
     app.kubernetes.io/name: gatekeeper
-    app.kubernetes.io/component: policy-enforcement
-    app.kubernetes.io/part-of: cluster-management
+    app.kubernetes.io/component: governance
+    app.kubernetes.io/part-of: platform-management
 
 resources:
 - Gatekeeper.yaml
+- ConstraintTemplate_K8sRequiredManifestSubset.yaml

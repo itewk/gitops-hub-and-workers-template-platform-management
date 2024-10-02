@@ -16,7 +16,9 @@ spec:
     metadata:
       name: '{{ .path.basenameNormalized }}'
       labels:
-        gitops-application: '{{ .path.basenameNormalized }}'
+        app.kubernetes.io/name: '{{ .path.basenameNormalized }}'
+        app.kubernetes.io/component: cluster-management
+        app.kubernetes.io/part-of: platform-management
     spec:
       project: default
       source:

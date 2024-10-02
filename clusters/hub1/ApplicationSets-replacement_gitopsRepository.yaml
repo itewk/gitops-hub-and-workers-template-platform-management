@@ -3,7 +3,7 @@
 #
 # Source is assuming a resource with /data/gitopsRepository (e.g. ConfigMap)
 source:
-  name: gitops-configuration
+  name: gitops-repository-configuration
   fieldPath: .data.gitopsRepository
 targets:
   - select:

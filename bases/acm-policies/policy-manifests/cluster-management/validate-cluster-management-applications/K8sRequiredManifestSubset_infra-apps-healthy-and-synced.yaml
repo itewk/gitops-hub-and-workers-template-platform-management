@@ -20,10 +20,10 @@ spec:
     # NOTE: this is a bit hacky, and brittle, but don't have another idea
     labelSelector:
       matchExpressions:
-        - key: gitops-application
-          operator: NotIn
-          values:
-          - acm-policies
+      - key: app.kubernetes.io/name
+        operator: NotIn
+        values:
+        - acm-policies
   parameters:
     manifest_subset:
       status:

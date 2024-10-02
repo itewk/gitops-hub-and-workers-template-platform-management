@@ -2,13 +2,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: 00-cluster-operations-root
+  name: 00-cluster-management-root
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: 00-cluster-management-root
+    app.kubernetes.io/component: cluster-management
+    app.kubernetes.io/part-of: platform-management
 spec:
   project: default
   source:
-    repoURL: ""
-    targetRevision: ""
-    path: 'clusters/hub1/'
+    repoURL: '{{ (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsRepository }}'
+    targetRevision: '{{ default "HEAD" (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsRevision }}'
+    path: 'clusters/{{ default (fromClusterClaim "name") (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsCluster }}/'
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

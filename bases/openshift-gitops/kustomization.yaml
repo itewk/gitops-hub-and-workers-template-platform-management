@@ -8,8 +8,8 @@ labels:
 - includeSelectors: false
   pairs:
     app.kubernetes.io/name: openshift-gitops
-    app.kubernetes.io/component: reconciler
-    app.kubernetes.io/part-of: gitops
+    app.kubernetes.io/component: cluster-management
+    app.kubernetes.io/part-of: platform-management
 
 resources:
 - ArcoCD_openshift-gitops.yaml

@@ -8,8 +8,8 @@ labels:
 - includeSelectors: false
   pairs:
     app.kubernetes.io/name: gatekeeper-operator
-    app.kubernetes.io/component: operator
-    app.kubernetes.io/part-of: cluster-management
+    app.kubernetes.io/component: governance
+    app.kubernetes.io/part-of: platform-management
 
 helmCharts:
 - name: operators-installer

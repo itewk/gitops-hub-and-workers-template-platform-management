@@ -7,13 +7,13 @@ namespace: acm-policies
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: acm-policies
+    app.kubernetes.io/name: rhacm-policies
     app.kubernetes.io/component: governance
-    app.kubernetes.io/part-of: cluster-management
+    app.kubernetes.io/part-of: platform-management
 
 resources:
 - ManagedClusterSetBinding_default.yaml
 
 generators:
-- PolicyGenerator_gitops.yaml
-#- PolicyGenerator_tenant-gitops.yaml
+- PolicyGenerator_cluster-management.yaml
+- PolicyGenerator_tenant-management.yaml

@@ -7,17 +7,29 @@ namespace: openshift-gitops
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/part-of: gitops
+    app.kubernetes.io/part-of: platform-management
 
 resources:
-# configure OpenShift GitOps (after init enforced by management policy)
-- ../../bases/openshift-gitops
-- ../../clusters/hub1/overlays/gitops-configuration
+# initial configuration of cluster gitops (aka, configure OpenShift GitOps (ArgoCD) for cluster management)
+# NOTE: after init this is enforced by governance component
+- ../../bases/acm-policies/policy-manifests/cluster-management/configure-cluster-gitops
 
-# install initial application (after init enforced by management policy)
-- Application_cluster-operations.yaml
+# initial gitops repository configuration 
+# NOTE: after init this is enforced via the clusters/hub1 application
+- ../../clusters/hub1/overlays/cluster-gitops-repository-configuration
 
-# Update Application to use the gitops configuration (after init enforced by management policy)
+# initial deployment of governance policy content for TODO
+# NOTE: after init this is enforced by governance component
+- ../../bases/acm-policies/policy-manifests/cluster-management/deploy-cluster-management-applications/
+
+# Update Application deployed by TODO to use the gitops configuration supplied by the hub1 cluster-gitops-repository-configuration overlay
+# NOTE: after init this is done by dynamic replacement by the deploy-cluster-management-applications policy
 replacements:
 - path: Application-replacement_gitopsRepository.yaml
 - path: Application-replacement_gitopsRevision.yaml
+
+
+patches:
+- target:
+    name: 00-cluster-management-root
+  path: Application-patch_gitops-path.yaml

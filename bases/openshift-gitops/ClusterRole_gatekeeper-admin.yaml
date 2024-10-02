@@ -9,6 +9,7 @@ rules:
   - "*"
   apiGroups:
   - operator.gatekeeper.sh
+  - templates.gatekeeper.sh
   resources:
   - '*'
   

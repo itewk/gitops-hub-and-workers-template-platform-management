@@ -1,0 +1,41 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: tenant-management
+
+placementBindingDefaults:
+  name: tenant-management
+
+policyDefaults:
+  namespace: acm-policies
+  consolidateManifests: true
+  orderManifests: false
+  orderPolicies: true
+  generatePlacementWhenInSet: false
+  pruneObjectBehavior: None
+  complianceType: musthave
+  severity: critical
+  informGatekeeperPolicies: false
+
+policySetDefaults:
+  generatePolicySetPlacement: true
+
+policies:
+- name: validate-tenant-applications
+  description: Validate tenant ArgoCD Applications are healthy and synced
+  policySets:
+  - tenant-management
+  namespaceSelector:
+    include:
+    - '*'
+    exclude:
+    - 'openshift-gitops'
+  remediationAction: inform
+  severity: low
+  manifests:
+  - path: policy-manifests/tenant-management/validate-tenant-applications
+
+policySets:
+- name: tenant-management
+  description: Tenant management policies related to deploying, configuring, and monitoring tenant gitops components

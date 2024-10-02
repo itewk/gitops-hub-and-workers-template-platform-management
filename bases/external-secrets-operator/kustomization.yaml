@@ -8,8 +8,8 @@ labels:
 - includeSelectors: false
   pairs:
     app.kubernetes.io/name: external-secrets-operator
-    app.kubernetes.io/component: operator
-    app.kubernetes.io/part-of: secrets-management
+    app.kubernetes.io/component: secrets-management
+    app.kubernetes.io/part-of: platform-management
 
 helmCharts:
 - name: operators-installer
