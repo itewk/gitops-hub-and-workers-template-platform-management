@@ -12,8 +12,8 @@ labels:
 namespace: openshift-gitops
 
 resources:
-# load cluster gitops repository configuration (e.g. repository, revision)
-- overlays/cluster-gitops-repository-configuration
+# load gitops repository configuration (e.g. repository, revision)
+- overlays/gitops-repository-configuration
 
 # install applications
 - ApplicationSet_cluster-hub1.yaml

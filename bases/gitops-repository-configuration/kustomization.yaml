@@ -7,7 +7,7 @@ namespace: openshift-gitops
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: cluster-gitops-repository-configuration
+    app.kubernetes.io/name: gitops-repository-configuration
     app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 
