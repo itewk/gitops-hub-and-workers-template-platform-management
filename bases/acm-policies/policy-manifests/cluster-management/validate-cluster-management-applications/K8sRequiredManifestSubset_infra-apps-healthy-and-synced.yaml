@@ -10,7 +10,6 @@ spec:
       - argoproj.io
       kinds:
       - Application
-      - ApplicationSet
     namespaces:
     - openshift-gitops
 
