@@ -18,4 +18,4 @@ spec:
         health:
           status: Healthy
         sync:
-          status: Synced42
+          status: Synced
