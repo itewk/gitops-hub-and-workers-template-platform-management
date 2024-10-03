@@ -26,11 +26,6 @@ policies:
   description: Validate tenant ArgoCD Applications are healthy and synced
   policySets:
   - tenant-management
-  namespaceSelector:
-    include:
-    - '*'
-    exclude:
-    - 'openshift-gitops'
   remediationAction: inform
   severity: low
   manifests:

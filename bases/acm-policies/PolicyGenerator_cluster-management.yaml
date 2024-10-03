@@ -58,9 +58,6 @@ policies:
   description: Validate cluster management ArgoCD Applications are healthy and synced
   policySets:
   - cluster-management
-  namespaceSelector:
-    include:
-    - 'openshift-gitops'
   remediationAction: inform
   manifests:
   - path: policy-manifests/cluster-management/validate-cluster-management-applications
