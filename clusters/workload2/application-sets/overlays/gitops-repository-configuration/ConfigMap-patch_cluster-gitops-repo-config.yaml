@@ -1,0 +1,25 @@
+# WARNING:
+#   don't make patch file empty due to: https://github.com/kubernetes-sigs/kustomize/issues/5487
+
+# NOTE:
+#   It is recognized that is not best git practice to commit commented out code, but
+#   these are here for ease of permanently or temporarily overriding the gitops configuration for this cluster
+
+# Override the name of the managed cluster for use when looking up its gitops configuration
+#
+# Useful if you want to test one clusters gitops configuration against another or
+# when the cluster name in RHACM is different then the one in gitops,
+# such as with the hard coded 'local-cluster' where RHACM is installed
+#- op: add
+#  path: /data/gitopsCluster
+#  value:  
+
+# Override the URL to the gitops repository to manage this cluster with
+#- op: add
+#  path: /data/gitopsRepository
+#  value: 
+
+# Override the branch in the gitops repository to manage this cluster with
+- op: add
+  path: /data/gitopsRevision
+  value: main

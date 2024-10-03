@@ -12,15 +12,15 @@ labels:
 resources:
 # initial configuration of cluster gitops (aka, configure OpenShift GitOps (ArgoCD) for cluster management)
 # NOTE: after init this is enforced by governance component
-- ../../bases/acm-policies/policy-manifests/cluster-management/configure-cluster-gitops
+- ../../bases/openshift-gitops-policies/policy-manifests/cluster-management/configure-cluster-gitops
 
 # initial gitops repository configuration 
 # NOTE: after init this is enforced via the clusters/hub1 application
-- ../../clusters/hub1/overlays/gitops-repository-configuration
+- ../../clusters/hub1/application-sets/overlays/gitops-repository-configuration
 
 # initial deployment of governance policy content for TODO
 # NOTE: after init this is enforced by governance component
-- ../../bases/acm-policies/policy-manifests/cluster-management/deploy-cluster-management-applications/
+- ../../bases/openshift-gitops-policies/policy-manifests/cluster-management/deploy-cluster-management-applications/
 
 # Update Application deployed by TODO to use the gitops configuration supplied by the hub1 gitops-repository-configuration overlay
 # NOTE: after init this is done by dynamic replacement by the deploy-cluster-management-applications policy

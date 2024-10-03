@@ -1,0 +1,39 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 00-cluster-management-root
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: 00-cluster-management-root
+    app.kubernetes.io/component: cluster-management
+    app.kubernetes.io/part-of: platform-management
+spec:
+  project: default
+  source:
+    # TODO
+    repoURL: '{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRepository))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRepository }}'
+    targetRevision: '{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRevision))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRevision }}'
+    path: 'clusters/{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsCluster))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsCluster }}'
+
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
+    # since there are inter-dependencies between applications that can take a while to sort themselves out allow for infinite retries
+    retry:
+      limit: -1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 10m
+
+    # ensure Argo gets namespace admin on created namespace
+    syncOptions:
+    - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops

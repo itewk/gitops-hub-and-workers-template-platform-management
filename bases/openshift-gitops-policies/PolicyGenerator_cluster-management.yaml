@@ -8,7 +8,7 @@ placementBindingDefaults:
   name: cluster-management
 
 policyDefaults:
-  namespace: acm-policies
+  namespace: openshift-gitops-policies
   consolidateManifests: true
   orderManifests: false
   orderPolicies: true
@@ -46,7 +46,7 @@ policies:
   manifests:
   - path: policy-manifests/cluster-management/validate-cluster-gitops
 
-- name: deploy-cluster-management-applications
+- name: deploy-cluster-management-apps
   description: Deploy cluster management ArgoCD Applications
   policySets:
   - cluster-management
@@ -54,7 +54,7 @@ policies:
   manifests:
   - path: policy-manifests/cluster-management/deploy-cluster-management-applications
 
-- name: validate-cluster-management-applications
+- name: validate-cluster-management-apps
   description: Validate cluster management ArgoCD Applications are healthy and synced
   policySets:
   - cluster-management

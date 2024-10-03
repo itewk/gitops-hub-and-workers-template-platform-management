@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-hub1
+  name: cluster-specific
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]

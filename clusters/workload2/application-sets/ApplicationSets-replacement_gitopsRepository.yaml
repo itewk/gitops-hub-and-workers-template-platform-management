@@ -9,8 +9,9 @@ targets:
 - select:
     group: argoproj.io
     version: v1alpha1
-    kind: Application
+    kind: ApplicationSet
   fieldPaths:
-  - spec.source.repoURL
+  - spec.generators.*.git.repoURL
+  - spec.template.spec.source.repoURL
   options:
     create: True

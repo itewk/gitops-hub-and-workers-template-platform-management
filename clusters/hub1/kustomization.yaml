@@ -9,18 +9,9 @@ labels:
     app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 
-namespace: openshift-gitops
-
 resources:
-# load gitops repository configuration (e.g. repository, revision)
-- overlays/gitops-repository-configuration
-
 # install applications
-- ApplicationSet_cluster-hub1.yaml
-- ../../groups/all
-- ../../groups/hub
+- application-sets
 
-# Update ApplicationSets to use the gitops configuration
-replacements:
-- path: ApplicationSets-replacement_gitopsRepository.yaml
-- path: ApplicationSets-replacement_gitopsRevision.yaml
+# install managed-clusters
+- managed-clusters

@@ -8,7 +8,7 @@ placementBindingDefaults:
   name: tenant-management
 
 policyDefaults:
-  namespace: acm-policies
+  namespace: openshift-gitops
   consolidateManifests: true
   orderManifests: false
   orderPolicies: true

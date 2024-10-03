@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tenent-gitops-repo-config
+data:
+  # TODO
+  gitopsRepository: https://github.com/itewk/tenents-gitops-hub-and-spoke-template.git
+  gitopsRevision: main
+  #gitopsCluster: 
+immutable: false

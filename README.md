@@ -14,11 +14,18 @@ This is the process for initializing the gitops loop between Red Hat OpenShift G
 ## Architecture
 TODO
 
+## Testing
+Kustomize build test
+```sh
+ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook test/test-playbook.yaml
+```
+
 ## Status
 Current status of this repository
 
 - [x] Initialization is tested as working against Red Hat OpenShift Container Platform cluster 4.16.12
+- [ ] Gitops-ify adding managed clusters to RHACM
 - [ ] Update kuztomizations to point at git links rather then relative links to support structural promotions
 - [ ] Document repo description / purpose
 - [ ] Document repo architecture
-- [ ] Implement sample "managed workload cluster"
+- [x] Implement sample "managed workload cluster"

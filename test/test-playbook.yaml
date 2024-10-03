@@ -17,11 +17,13 @@
   - name: Test kustomize build of each kustomization directory
     ansible.builtin.command:
       argv:
-      - "kustomize"
-      - "build"
-      - "--enable-helm"
-      - "--enable-alpha-plugins"
+      - kustomize
+      - build
+      - --enable-helm
+      - --enable-alpha-plugins
       - "{{ kustomization_directory }}"
+    environment:
+      POLICY_GEN_ENABLE_HELM: "true"
     loop: "{{ kustomization_directories }}"
     loop_control:
       loop_var: kustomization_directory

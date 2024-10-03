@@ -5,10 +5,10 @@ kind: Kustomization
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: gitops-repository-configuration
+    app.kubernetes.io/name: cluster-workload1
     app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 
 resources:
-- ConfigMap_cluster-gitops-repo-config.yaml
-- ConfigMap_tenent-gitops-repo-config.yaml
+# install applications
+- application-sets
