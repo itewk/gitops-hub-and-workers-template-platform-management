@@ -8,7 +8,7 @@ This is the process for initializing the gitops loop between Red Hat OpenShift G
 1. Log into cli of target hub cluster
 1. Initialize the reconciliation loop
     ```sh
-    ansible-playbook init-playbook.yaml
+    ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook init-playbook.yaml
     ```
 
 ## Architecture
