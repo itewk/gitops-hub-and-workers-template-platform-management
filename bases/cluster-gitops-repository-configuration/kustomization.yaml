@@ -12,4 +12,4 @@ labels:
     app.kubernetes.io/part-of: platform-management
 
 resources:
-- ConfigMap_gitops-repository-configuration.yaml
+- ConfigMap_cluster-gitops-repository-configuration.yaml

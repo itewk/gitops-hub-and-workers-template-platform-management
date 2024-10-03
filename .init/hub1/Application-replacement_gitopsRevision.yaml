@@ -3,7 +3,7 @@
 #
 # Source is assuming a resource with /data/gitopsRevision (e.g. ConfigMap)
 source:
-  name: gitops-repository-configuration
+  name: cluster-gitops-repository-configuration
   fieldPath: .data.gitopsRevision
 targets:
   - select:

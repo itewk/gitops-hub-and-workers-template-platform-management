@@ -10,6 +10,7 @@ spec:
       - argoproj.io
       kinds:
       - Application
+      - ApplicationSet
     excludedNamespaces:
     - openshift-gitops
   parameters:

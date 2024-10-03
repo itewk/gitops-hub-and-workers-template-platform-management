@@ -11,9 +11,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: '{{ (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsRepository }}'
-    targetRevision: '{{ default "HEAD" (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsRevision }}'
-    path: 'clusters/{{ default (fromClusterClaim "name") (lookup "v1" "ConfigMap" "openshift-gitops" "gitops-repository-configuration").data.gitopsCluster }}/'
+    repoURL: '{{ (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repository-configuration").data.gitopsRepository }}'
+    targetRevision: '{{ default "HEAD" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repository-configuration").data.gitopsRevision }}'
+    path: 'clusters/{{ default (fromClusterClaim "name") (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repository-configuration").data.gitopsCluster }}/'
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

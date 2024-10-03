@@ -8,5 +8,5 @@ resources:
 # Patch gitops configuration for cluster specific configuration (e.g. repository, revision)
 patches:
 - target:
-    name: gitops-repository-configuration
+    name: cluster-gitops-repository-configuration
   path: ConfigMap-patch_gitops-repository-configuration.yaml
