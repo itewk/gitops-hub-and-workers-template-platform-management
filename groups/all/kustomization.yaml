@@ -10,4 +10,4 @@ labels:
     app.kubernetes.io/part-of: platform-management
 
 resources:
-- application-sets
+- cluster-management-gitops

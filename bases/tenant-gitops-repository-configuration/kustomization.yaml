@@ -5,9 +5,9 @@ kind: Kustomization
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: group-workload-production
-    app.kubernetes.io/component: cluster-management
+    app.kubernetes.io/name: tenant-gitops-repository-configuration
+    app.kubernetes.io/component: tenant-management
     app.kubernetes.io/part-of: platform-management
 
 resources:
-- cluster-management-gitops
+- ConfigMap_tenant-gitops-repo-config.yaml

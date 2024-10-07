@@ -1,3 +1,0 @@
----
-applicationSetName: group-all
-applicationSetGeneratorGitFilesPath: groups/all/applications/**/kustomization.yaml

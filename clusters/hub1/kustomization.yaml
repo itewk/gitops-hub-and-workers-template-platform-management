@@ -5,13 +5,12 @@ kind: Kustomization
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: cluster-hub1
-    app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 
 resources:
-# install applications
-- application-sets
+# deploy cluster gitops applications
+- cluster-management-gitops
 
-# install managed-clusters
+# deploy managed clusters applications
 - managed-clusters
+

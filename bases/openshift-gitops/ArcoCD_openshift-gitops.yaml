@@ -3,7 +3,6 @@ apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
   name: openshift-gitops
-  namespace: openshift-gitops
 spec:
   # override so no conflict with anything that sets `app.kubernetes.io/instance` like the PolicyGenerator plugin
   applicationInstanceLabelKey: argocd.argoproj.io/instance

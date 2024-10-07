@@ -1,0 +1,5 @@
+---
+applicationSet:
+  name: group-production
+  generatorGitFilePath: groups/production/applications/**/kustomization.yaml
+  project: cluster-management

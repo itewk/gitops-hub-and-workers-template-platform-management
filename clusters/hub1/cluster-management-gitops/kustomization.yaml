@@ -1,0 +1,31 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: openshift-gitops
+
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: cluster-gitops
+    app.kubernetes.io/component: cluster-management
+
+resources:
+# load gitops repository configuration (e.g. repository, revision)
+- overlays/cluster-gitops-repository-configuration
+
+# install group applications
+- ../../../groups/all
+- ../../../groups/hub
+
+# install cluster specific applications
+helmGlobals:
+  chartHome: ../../../helm-charts
+helmCharts:
+- name: application-set
+  version: 1.0.0
+  valuesFile: ApplicationSet_cluster-specific-values.yaml
+
+components:
+# TODO
+- ../../../components/ApplicationSets-replacement_cluster-gitops

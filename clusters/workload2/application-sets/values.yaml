@@ -1,3 +1,0 @@
----
-applicationSetName: cluster-workload2
-applicationSetGeneratorGitFilesPath: clusters/workload2/applications/**/kustomization.yaml

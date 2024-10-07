@@ -2,6 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+labels:
+- includeSelectors: false
+  pairs:
+    app.kubernetes.io/name: managed-clusters
+    app.kubernetes.io/component: cluster-management
+
 resources:
 - workload1
 - workload2

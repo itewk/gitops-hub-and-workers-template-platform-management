@@ -6,7 +6,10 @@
   - name: Recursively find kustomization files to test
     ansible.builtin.find:
       paths: ../
-      patterns: kustomization.yaml
+      patterns:
+      - kustomization.yaml
+      contains: 'kind: Kustomization'
+      read_whole_file: true
       recurse: yes
     register: kustomization_files
   

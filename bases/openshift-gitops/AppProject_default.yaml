@@ -1,0 +1,7 @@
+---
+# essentially disables the default project
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+spec: {}

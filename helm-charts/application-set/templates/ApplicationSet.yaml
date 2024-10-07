@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: {{ .Values.applicationSetName }}
+  name: {{ .Values.applicationSet.name }}
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -11,7 +11,7 @@ spec:
       #repoURL: # to be set by patches or replacements
       #revision: # to be set by patches or replacements
       files:
-      - path: {{ .Values.applicationSetGeneratorGitFilesPath }}
+      - path: {{ .Values.applicationSet.generatorGitFilePath }}
   template:
     metadata:
       name: '{{ `{{ .path.basenameNormalized }}` }}'
@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/component: cluster-management
         app.kubernetes.io/part-of: platform-management
     spec:
-      project: default
+      project: {{ .Values.applicationSet.project }}
       source:
         # repoURL: # to be set by patches or replacements
         # targetRevision: # to be set by patches or replacements

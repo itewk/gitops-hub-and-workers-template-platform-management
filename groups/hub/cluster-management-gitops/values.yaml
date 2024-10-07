@@ -1,0 +1,5 @@
+---
+applicationSet:
+  name: group-hub
+  generatorGitFilePath: groups/hub/applications/**/kustomization.yaml
+  project: cluster-management

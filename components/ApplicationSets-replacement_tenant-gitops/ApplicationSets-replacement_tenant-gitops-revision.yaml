@@ -1,0 +1,17 @@
+---
+# Set the ApplicationSet gitops revision
+#
+# Source is assuming a resource with /data/gitopsRevision (e.g. ConfigMap)
+source:
+  name: tenant-gitops-repo-config
+  fieldPath: .data.gitopsRevision
+targets:
+- select:
+    group: argoproj.io
+    version: v1alpha1
+    kind: ApplicationSet
+  fieldPaths:
+  - spec.generators.*.git.revision
+  - spec.template.spec.source.targetRevision
+  options:
+    create: True

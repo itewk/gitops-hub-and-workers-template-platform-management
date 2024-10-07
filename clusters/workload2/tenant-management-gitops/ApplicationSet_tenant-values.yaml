@@ -1,0 +1,5 @@
+---
+applicationSet:
+  name: tenants-workload2
+  generatorGitFilePath: clusters/workload2/**
+  project: tenant-management

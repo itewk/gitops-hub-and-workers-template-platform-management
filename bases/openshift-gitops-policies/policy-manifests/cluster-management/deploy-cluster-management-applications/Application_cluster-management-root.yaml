@@ -9,12 +9,15 @@ metadata:
     app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 spec:
-  project: default
+  project: cluster-management
   source:
     # TODO
-    repoURL: '{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRepository))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRepository }}'
-    targetRevision: '{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRevision))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRevision }}'
-    path: 'clusters/{{ default "{{hub (default "ERROR: looking up repo url" (default .ManagedClusterName (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsCluster))  hub}}" (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsCluster }}'
+    # 1) hub (cluster) -> openshift-gitops-policies (namespace) -> {MANAGED_CLUSTER_NAME}-cluster-gitops-repo-config (ConfigMap)
+    # 2) managed cluster (cluster) -> openshift-gitops (namespace) -> cluster-gitops-repo-config (ConfigMap)
+    # 3) error
+    repoURL: '{{ default (default ("ERROR: looking up repo url") (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRepository) ("{{hub default ("") (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRepository hub}}") }}'
+    targetRevision: '{{ default (default ("ERROR: looking up repo revision") (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsRevision) ("{{hub default ("") (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsRevision hub}}") }}'
+    path: 'clusters/{{ default (default (fromClusterClaim "name") (lookup "v1" "ConfigMap" "openshift-gitops" "cluster-gitops-repo-config").data.gitopsCluster) ("{{hub default ("") (lookup "v1" "ConfigMap" "openshift-gitops-policies" (printf "%s-cluster-gitops-repo-config" .ManagedClusterName)).data.gitopsCluster hub}}") }}'
 
   destination:
     server: https://kubernetes.default.svc

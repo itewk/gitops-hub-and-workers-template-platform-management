@@ -1,0 +1,29 @@
+---
+# apply the managed cluster gitops config to the cluster manager cluster so cluster manager cluster can look it up before
+# it is applied to the managed cluster by the managed clusters gitops
+#
+# this solves a chicken/egg problem when initializing new clusters
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# needs to be in openshift-gitops-policies so cluster management can look it up dynamically
+namespace: openshift-gitops-policies
+
+resources:
+- ../../../../workload1/cluster-management-gitops/overlays/cluster-gitops-repository-configuration
+
+patches:
+# make managed cluster gitops config unique on RHACM cluster
+- target:
+    name: cluster-gitops-repo-config
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: workload1-cluster-gitops-repo-config
+- target:
+    name: tenant-gitops-repo-config
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: workload1-tenant-gitops-repo-config

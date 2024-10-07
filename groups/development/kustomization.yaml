@@ -5,9 +5,9 @@ kind: Kustomization
 labels:
 - includeSelectors: false
   pairs:
-    app.kubernetes.io/name: group-workload-dev
+    app.kubernetes.io/name: group-workload-development
     app.kubernetes.io/component: cluster-management
     app.kubernetes.io/part-of: platform-management
 
 resources:
-- application-sets
+- cluster-management-gitops
