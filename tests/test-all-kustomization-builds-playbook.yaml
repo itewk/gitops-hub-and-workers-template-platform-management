@@ -1,4 +1,4 @@
-- name: Test
+- name: Test all kustomization builds
   hosts: localhost
   connection: local
   gather_facts: false

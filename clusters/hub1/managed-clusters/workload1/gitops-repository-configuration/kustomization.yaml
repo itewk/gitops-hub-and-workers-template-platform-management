@@ -18,12 +18,12 @@ patches:
 - target:
     name: cluster-gitops-repo-config
   patch: |-
-      - op: replace
-        path: /metadata/name
-        value: workload1-cluster-gitops-repo-config
+    - op: replace
+      path: /metadata/name
+      value: workload1-cluster-gitops-repo-config
 - target:
     name: tenent-gitops-repo-config
   patch: |-
-      - op: replace
-        path: /metadata/name
-        value: workload1-tenent-gitops-repo-config
+    - op: replace
+      path: /metadata/name
+      value: workload1-tenent-gitops-repo-config

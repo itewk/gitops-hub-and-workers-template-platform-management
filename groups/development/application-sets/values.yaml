@@ -1,0 +1,3 @@
+---
+applicationSetName: group-development
+applicationSetGeneratorGitFilesPath: groups/development/applications/**/kustomization.yaml

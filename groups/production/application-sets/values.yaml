@@ -1,0 +1,3 @@
+---
+applicationSetName: group-production
+applicationSetGeneratorGitFilesPath: groups/production/applications/**/kustomization.yaml

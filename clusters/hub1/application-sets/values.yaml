@@ -1,0 +1,3 @@
+---
+applicationSetName: cluster-hub1
+applicationSetGeneratorGitFilesPath: clusters/hub1/applications/**/kustomization.yaml

@@ -1,0 +1,3 @@
+---
+applicationSetName: group-hub
+applicationSetGeneratorGitFilesPath: groups/hub/applications/**/kustomization.yaml

@@ -4,6 +4,10 @@ kind: Kustomization
 
 namespace: openshift-gitops
 
-resources:
 # install applications
-- ApplicationSet_group-hub.yaml
+helmGlobals:
+  chartHome: ../../../helm-charts
+helmCharts:
+- name: application-set
+  version: 1.0.0
+  valuesFile: values.yaml

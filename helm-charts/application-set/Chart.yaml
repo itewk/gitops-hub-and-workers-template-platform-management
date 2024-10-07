@@ -1,0 +1,7 @@
+apiVersion: v2
+name: application-set
+description: TODO
+
+type: application
+
+version: 1.0.0

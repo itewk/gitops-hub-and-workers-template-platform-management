@@ -1,0 +1,12 @@
+---
+apiVersion: console.openshift.io/v1
+kind: ConsoleNotification
+metadata:
+  name: group
+spec:
+  text: "group: development"
+  location: BannerTop
+
+  # NOTE: color blind safe colors from https://personal.sron.nl/~pault/#sec:sequential
+  color: '#000000'
+  backgroundColor: '#BBE453'

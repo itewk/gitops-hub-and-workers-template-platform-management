@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: group-hub
+  name: {{ .Values.applicationSetName }}
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -11,12 +11,12 @@ spec:
       #repoURL: # to be set by patches or replacements
       #revision: # to be set by patches or replacements
       files:
-      - path: 'groups/hub/applications/**/kustomization.yaml'
+      - path: {{ .Values.applicationSetGeneratorGitFilesPath }}
   template:
     metadata:
-      name: '{{ .path.basenameNormalized }}'
+      name: '{{ `{{ .path.basenameNormalized }}` }}'
       labels:
-        app.kubernetes.io/name: '{{ .path.basenameNormalized }}'
+        app.kubernetes.io/name: '{{ `{{ .path.basenameNormalized }}` }}'
         app.kubernetes.io/component: cluster-management
         app.kubernetes.io/part-of: platform-management
     spec:
@@ -24,10 +24,10 @@ spec:
       source:
         # repoURL: # to be set by patches or replacements
         # targetRevision: # to be set by patches or replacements
-        path: '{{ .path.path }}'
+        path: '{{ `{{ .path.path }}` }}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ dig "namespace" "" . }}' # ensure Argo gets namespace admin on created namespace
+        namespace: '{{ `{{ dig "namespace" "" . }}` }}' # ensure Argo gets namespace admin on created namespace
       syncPolicy:
         automated:
           selfHeal: true
