@@ -15,7 +15,6 @@ resources:
 - ArcoCD_openshift-gitops.yaml
 - AppProject_cluster-management.yaml
 - AppProject_tenant-management.yaml
-- AppProject_default.yaml
 - ClusterRoleBinding_openshift-gitops-acm-cluster-admin.yaml
 - ClusterRoleBinding_openshift-gitops-acm-clusterclaims-admin.yaml
 - ClusterRoleBinding_openshift-gitops-acm-multiclusterhubs-admin.yaml
