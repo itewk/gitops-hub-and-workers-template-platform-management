@@ -4,3 +4,11 @@ applicationSet:
   generatorGitFilePath:
   project:
   syncPolicyAutomated: true
+
+  # if true:
+  #   sets spec.synPolicy.applicationsSync to 'create-update'
+  #   sets spec.syncPolicy.preserveResourcesOnDeletion to 'true'
+  # if false:
+  #   sets spec.synPolicy.applicationsSync to 'sync'
+  #   sets spec.syncPolicy.preserveResourcesOnDeletion to 'false'
+  preventCascadingDeletion: false

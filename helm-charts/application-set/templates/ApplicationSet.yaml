@@ -6,6 +6,9 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
+  syncPolicy:
+    preserveResourcesOnDeletion: {{ .Values.applicationSet.preventCascadingDeletion }}
+    applicationsSync: {{ .Values.applicationSet.preventCascadingDeletion | ternary "create-update" "sync" }}
   generators:
   - git:
       #repoURL: # to be set by patches or replacements

@@ -4,3 +4,4 @@ applicationSet:
   generatorGitFilePath: clusters/workload1/**
   project: tenant-management
   syncPolicyAutomated: true
+  preventCascadingDeletion: false

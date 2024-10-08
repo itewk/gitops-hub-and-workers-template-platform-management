@@ -4,3 +4,4 @@ applicationSet:
   generatorGitFilePath: groups/production/applications/**/kustomization.yaml
   project: cluster-management
   syncPolicyAutomated: true
+  preventCascadingDeletion: false
