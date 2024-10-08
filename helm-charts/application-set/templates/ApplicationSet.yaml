@@ -29,9 +29,11 @@ spec:
         server: https://kubernetes.default.svc
         namespace: '{{ `{{ dig "namespace" "" . }}` }}' # ensure Argo gets namespace admin on created namespace
       syncPolicy:
+        {{- if .Values.applicationSet.syncPolicyAutomated }}
         automated:
           selfHeal: true
           prune: true
+        {{- end }}
 
         # since there are inter-dependencies between applications that can take a while to sort themselves out allow for infinite retries
         retry:

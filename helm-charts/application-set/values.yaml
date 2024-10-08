@@ -3,3 +3,4 @@ applicationSet:
   name:
   generatorGitFilePath:
   project:
+  syncPolicyAutomated: true
