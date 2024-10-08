@@ -7,11 +7,11 @@
     kubernetes.core.k8s:
       definition: "{{ lookup('kubernetes.core.kustomize', dir='bases/openshift-gitops-operator', enable_helm=True) }}"
       wait: true
-    register: installOpenshiftGitopsOperatorResult
+    register: installOpenShiftGitopsOperatorResult
   
   - name: Install OpenShift GitOps operator result output (enable -v to see)
     ansible.builtin.debug:
-      var: installOpenshiftGitopsOperatorResult
+      var: installOpenShiftGitopsOperatorResult
       verbosity: 1
   
   - name: Wait for CRD established | ArgoCD
@@ -45,15 +45,31 @@
       name: openshift-gitops
       wait: true
       wait_timeout: 300
+  
+  - name: Configure cluster OpenShift GitOps (ArgoCD)
+    kubernetes.core.k8s:
+      definition: "{{ lookup('kubernetes.core.kustomize', dir='bases/openshift-gitops', enable_helm=True) }}"
+      wait: true
+    register: configureClusterOpenShiftGitops
+  
+  - name: Configure cluster OpenShift GitOps (ArgoCD) result output (enable -v to see)
+    ansible.builtin.debug:
+      var: configureClusterOpenShiftGitops
+      verbosity: 1
 
-  - name: Wait for ArgoCD AppProject | default
+  - name: Wait for ArgoCD AppProjects
     kubernetes.core.k8s_info:
       kind: AppProject
       api_version: argoproj.io/v1alpha1
-      name: default
+      name: "{{ appproject }}"
       namespace: openshift-gitops
       wait: true
       wait_timeout: 300
+    loop:
+    - cluster-management
+    - tenant-management
+    loop_control:
+      loop_var: appproject
 
   - name: Install Application to initialize gitops reconciliation loop
     kubernetes.core.k8s:
