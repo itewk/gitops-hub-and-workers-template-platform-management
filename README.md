@@ -1,4 +1,4 @@
-# gitops-hub-and-spoke-template
+# gitops hub and workers template: platform management
 TODO
 
 ## Initialize
