@@ -10,4 +10,4 @@ helmGlobals:
 helmCharts:
 - name: application-set
   version: 1.0.0
-  valuesFile: values.yaml
+  valuesFile: ApplicationSet_cluster-specific-values.yaml
