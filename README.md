@@ -4,13 +4,21 @@ TODO
 ## Initialize
 This is the process for initializing the gitops loop between Red Hat OpenShift GitOps (ArgoCD) Applications and Red Hat Advanced Cluster Management for Kubernetes (Open Cluster Management) Policies for a target `hub1` cluster.
 
+### Prerequisites
 1. Deploy an unmodified Red Hat OpenShift Container Platform cluster
-1. Log into cli of target hub cluster
 1. copy this template repositories to git server of your choice
    * https://github.com/itewk/gitops-hub-and-workers-template-platform-management
    * https://github.com/itewk/gitops-hub-and-workers-template-capabilities
    * https://github.com/itewk/gitops-hub-and-workers-template-tenants
 1. TODO - how to update all the URLs
+1. install required tools
+   * helm
+   * kustomize
+   * ansible
+   * kustomize plugin: [open-cluster-management-io/PolicyGenerator](https://github.com/open-cluster-management-io/policy-generator-plugin)
+
+### Kickoff self healing loop gitops loop of awesomeness
+1. Log into cli of target hub cluster
 1. Initialize the reconciliation loop
     ```sh
     ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook init-playbook.yaml
