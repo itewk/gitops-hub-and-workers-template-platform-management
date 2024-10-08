@@ -1,4 +1,4 @@
-# gitops hub and workers template: platform management
+# platform management (gitops hub and workers template)
 TODO
 
 ## Initialize
