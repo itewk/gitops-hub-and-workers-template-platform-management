@@ -3,3 +3,4 @@ applicationSet:
   name: cluster-hub1
   generatorGitFilePath: clusters/workload1/applications/**/kustomization.yaml
   project: cluster-management
+  syncPolicyAutomated: true

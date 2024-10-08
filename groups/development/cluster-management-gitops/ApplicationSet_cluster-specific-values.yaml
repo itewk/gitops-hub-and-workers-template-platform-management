@@ -3,3 +3,4 @@ applicationSet:
   name: group-development
   generatorGitFilePath: groups/development/applications/**/kustomization.yaml
   project: cluster-management
+  syncPolicyAutomated: true
