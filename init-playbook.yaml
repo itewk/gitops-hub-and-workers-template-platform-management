@@ -5,7 +5,7 @@
   tasks:
   - name: Install OpenShift GitOps operator
     kubernetes.core.k8s:
-      definition: "{{ lookup('kubernetes.core.kustomize', dir='bases/openshift-gitops-operator', enable_helm=True) }}"
+      definition: "{{ lookup('kubernetes.core.kustomize', dir='.init/hub1/openshift-gitops-operator', enable_helm=True) }}"
       wait: true
     register: installOpenShiftGitopsOperatorResult
   
@@ -48,7 +48,7 @@
   
   - name: Configure cluster OpenShift GitOps (ArgoCD)
     kubernetes.core.k8s:
-      definition: "{{ lookup('kubernetes.core.kustomize', dir='bases/openshift-gitops', enable_helm=True) }}"
+      definition: "{{ lookup('kubernetes.core.kustomize', dir='.init/hub1/openshift-gitops', enable_helm=True) }}"
       wait: true
     register: configureClusterOpenShiftGitops
   
@@ -73,7 +73,7 @@
 
   - name: Install Application to initialize gitops reconciliation loop
     kubernetes.core.k8s:
-      definition: "{{ lookup('kubernetes.core.kustomize', dir='.init/hub1', enable_helm=True) }}"
+      definition: "{{ lookup('kubernetes.core.kustomize', dir='.init/hub1/hub-cluster-management-root-application', enable_helm=True) }}"
       wait: true
     register: installApplicationResult
   

@@ -6,4 +6,4 @@ kind: Kustomization
 namespace: open-cluster-management
 
 resources:
-- ../../../../bases/acm-hub
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/bases/acm-hub?ref=main

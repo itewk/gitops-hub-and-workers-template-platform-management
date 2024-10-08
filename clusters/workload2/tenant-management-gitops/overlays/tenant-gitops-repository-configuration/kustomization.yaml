@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: openshift-gitops
 
 resources:
-- ../../../../../bases/tenant-gitops-repository-configuration
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/bases/tenant-gitops-repository-configuration?ref=main
 
 # Patch gitops configuration for cluster specific configuration (e.g. repository, revision)
 patches:

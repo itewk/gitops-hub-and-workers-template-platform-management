@@ -28,4 +28,4 @@ helmCharts:
 
 components:
 # TODO
-- ../../../components/ApplicationSets-replacement_cluster-gitops
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/components/ApplicationSets-replacement_cluster-gitops?ref=main

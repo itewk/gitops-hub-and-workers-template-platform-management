@@ -6,4 +6,4 @@ kind: Kustomization
 namespace: openshift-gitops-policies
 
 resources:
-- ../../../../bases/openshift-gitops-policies
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/bases/openshift-gitops-policies?ref=main

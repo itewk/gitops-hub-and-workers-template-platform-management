@@ -6,6 +6,11 @@ This is the process for initializing the gitops loop between Red Hat OpenShift G
 
 1. Deploy an unmodified Red Hat OpenShift Container Platform cluster
 1. Log into cli of target hub cluster
+1. copy this template repositories to git server of your choice
+   * https://github.com/itewk/gitops-hub-and-workers-template-platform-management
+   * https://github.com/itewk/gitops-hub-and-workers-template-capabilities
+   * https://github.com/itewk/gitops-hub-and-workers-template-tenants
+1. TODO - how to update all the URLs
 1. Initialize the reconciliation loop
     ```sh
     ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook init-playbook.yaml

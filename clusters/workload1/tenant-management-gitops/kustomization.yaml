@@ -24,4 +24,4 @@ helmCharts:
 
 components:
 # TODO
-- ../../../components/ApplicationSets-replacement_tenant-gitops
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/components/ApplicationSets-replacement_tenant-gitops?ref=main

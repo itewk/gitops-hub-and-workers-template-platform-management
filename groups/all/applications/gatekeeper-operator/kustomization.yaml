@@ -6,4 +6,4 @@ kind: Kustomization
 namespace: gatekeeper-operator
 
 resources:
-- ../../../../bases/gatekeeper-operator
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/bases/gatekeeper-operator?ref=main

@@ -6,4 +6,4 @@ kind: Kustomization
 namespace: external-secrets-operator
 
 resources:
-- ../../../../bases/external-secrets-operator
+- https://github.com/itewk/gitops-hub-and-workers-template-capabilities.git//kustomize/bases/external-secrets-operator?ref=main
